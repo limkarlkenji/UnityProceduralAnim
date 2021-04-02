@@ -1,25 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SegmentController : MonoBehaviour
 {
-    [Header("Right Leg")]
-    [SerializeField] private LegMovement rightLeg;
-    [Header("Left Leg")]
-    [SerializeField] private LegMovement leftLeg;
+    public List<LegPairController> segments = new List<LegPairController>();
 
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (rightLeg.Moving)
-        {
-            rightLeg.allowMovement = true;
-            leftLeg.allowMovement = false;
-        }
-        else if(leftLeg.Moving)
-        {
-            leftLeg.allowMovement = true;
-            rightLeg.allowMovement = false;
-        }
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    segments.Add(transform.GetChild(i).GetComponent<LegPairController>().SetIndex(i));
+        //}
+
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    segments.Add(transform.GetChild(i).GetComponent<LegPairController>().SetIndex(i));
+        //}
     }
 }
