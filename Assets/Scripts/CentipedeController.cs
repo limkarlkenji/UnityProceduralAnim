@@ -17,17 +17,20 @@ public class CentipedeController : MonoBehaviour
     private float t = 0;
     private Rig rig;
 
+    [SerializeField] private Vector3 headTargetOrigin;
+
     private void Start()
     {
         rig = GetComponent<RigBuilder>().layers[0].rig;
+        headTargetOrigin = headTarget.localPosition;
     }
 
     private void MoveHeadTarget()
     {
         t += Time.deltaTime;
-        Vector3 pos = headTarget.position;
-        pos.x += Mathf.Sin(t * Mathf.PI * frequency) * amplitude;
-        headTarget.position = pos;
+        Vector3 pos = headTarget.localPosition;
+        pos.x = amplitude * Mathf.Sin(t * frequency);
+        headTarget.localPosition = pos;
     }
 
     // Update is called once per frame
@@ -40,16 +43,18 @@ public class CentipedeController : MonoBehaviour
         {
             rig.weight = 1.0f;
             transform.position += transform.forward * moveSpeed;
-            head.position = new Vector3(headTarget.position.x, head.position.y, head.position.z);
+
+            head.LookAt(headTarget.position);
             // Turning
             if (Input.GetKey(KeyCode.Q))
             {
-                transform.rotation *= Quaternion.Euler(0, -turnAngle, 0);
+                //transform.rotation *= Quaternion.Euler(0, -turnAngle, 0);
+                transform.Rotate(Vector3.up * -turnAngle);
 
             }
             else if (Input.GetKey(KeyCode.E))
             {
-                transform.rotation *= Quaternion.Euler(0, turnAngle, 0);
+                transform.Rotate(Vector3.up * turnAngle);
 
             }
             else
@@ -76,7 +81,7 @@ public class CentipedeController : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E) )
         {
             rig.weight = 0.0f;
-            headTarget.position = Vector3.zero;
+            //headTarget.localPosition = headTargetOrigin;
         }
     }
 }

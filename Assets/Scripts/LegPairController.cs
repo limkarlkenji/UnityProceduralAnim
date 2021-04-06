@@ -9,11 +9,9 @@ public class LegPairController : MonoBehaviour
     [SerializeField] private LegMovement rightLeg;
     [SerializeField] private LegMovement leftLeg;
 
-    private SegmentController segmentController;
-
     private void Start()
     {
-        segmentController = transform.parent.GetComponent<SegmentController>();
+        //segmentController = transform.parent.GetComponent<SegmentController>();
         pairInFront = transform.parent.GetComponent<LegPairController>();
         StartCoroutine(MoveLegs());   
     }
@@ -39,11 +37,4 @@ public class LegPairController : MonoBehaviour
             while ((pairInFront != null) ? (pairInFront.rightLeg.Moving && leftLeg.Moving) : leftLeg.Moving);
         }
     }
-
-    //public LegPairController SetIndex(int index)
-    //{
-    //    pairIndex = index;
-    //    pairInFront = (pairIndex == 0) ? null : segmentController.segments[pairIndex - 1];
-    //    return this;
-    //}
 }
