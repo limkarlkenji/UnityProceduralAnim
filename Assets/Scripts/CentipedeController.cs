@@ -36,8 +36,6 @@ public class CentipedeController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
-       
         // Foward and backward movement
         if (Input.GetKey(KeyCode.W))
         {
@@ -45,43 +43,12 @@ public class CentipedeController : MonoBehaviour
             transform.position += transform.forward * moveSpeed;
 
             head.LookAt(headTarget.position);
-            // Turning
-            if (Input.GetKey(KeyCode.Q))
-            {
-                //transform.rotation *= Quaternion.Euler(0, -turnAngle, 0);
-                transform.Rotate(Vector3.up * -turnAngle);
-
-            }
-            else if (Input.GetKey(KeyCode.E))
-            {
-                transform.Rotate(Vector3.up * turnAngle);
-
-            }
-            else
-            {
-                
-                MoveHeadTarget();
-            }
-
+            MoveHeadTarget();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             transform.position += -transform.forward * moveSpeed;
         }
-        // Right and left movement
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += transform.right * moveSpeed;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += -transform.right * moveSpeed;
-        }
 
-        if(Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E) )
-        {
-            rig.weight = 0.0f;
-            //headTarget.localPosition = headTargetOrigin;
-        }
     }
 }
