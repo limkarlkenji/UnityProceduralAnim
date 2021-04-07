@@ -1,4 +1,4 @@
 # UnityProceduralAnim
 Testing Unity's Animation Rigging Package.
 
-![](https://imgur.com/a/cgFJLhJ)
+![](https://i.imgur.com/ysT4wEi.gif)
